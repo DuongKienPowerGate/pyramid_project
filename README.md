@@ -1,1 +1,1 @@
-# pyramid_project
+# Pyramid project RESTful API
