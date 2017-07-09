@@ -15,5 +15,8 @@ def main(global_config, **settings):
     # Routes
     config.include('.routes')
 
+    # Mailer
+    config.include('pyramid_mailer')
+
     config.scan()
     return config.make_wsgi_app()

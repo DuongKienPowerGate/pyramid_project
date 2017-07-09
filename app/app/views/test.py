@@ -28,15 +28,3 @@ def get_city(request):
 @view_config(route_name='cities', renderer='json')
 def list_cities(request):
     return CITIES
-
-@view_config(
-    route_name='api'
-)
-def api(request):
-    users = request.db['users'].find()
-    arr = []
-
-    for data in users:
-        arr.append(data)
-
-    return arr
