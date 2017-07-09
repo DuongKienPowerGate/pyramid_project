@@ -1,12 +1,13 @@
 from pyramid.view import view_config
+from bson import json_util
+from bson import ObjectId
 from bson.json_util import dumps
 import json
-from bson import json_util
+from pyramid.response import Response
 
 @view_config(route_name='home', renderer='templates/mytemplate.jinja2')
 def my_view(request):
     return {'project': 'app'}
-
 
 CITIES = {
     'paris': {
@@ -28,7 +29,14 @@ def get_city(request):
 def list_cities(request):
     return CITIES
 
-@view_config(route_name='api',renderer='json')
+@view_config(
+    route_name='api'
+)
 def api(request):
     users = request.db['users'].find()
-    return {"data": dumps(users)}
+    arr = []
+
+    for data in users:
+        arr.append(data)
+
+    return arr
